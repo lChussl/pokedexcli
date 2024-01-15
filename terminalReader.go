@@ -1,10 +1,11 @@
 package main
 
 import (
-    "fmt"
-    "os"
-    "bufio"
-    "strings"
+	"bufio"
+	"fmt"
+	"os"
+	"strings"
+	"github.com/lChussl/pokedexcli/internal/pokeapi"
 )
 
 type cliCommand struct {
@@ -13,7 +14,13 @@ type cliCommand struct {
     callback func() error
 }
 
-func terminalReader() {
+type config struct {
+    client  pokeapi.Client
+    nextUrl *string
+    prevUrl *string
+}
+
+func terminalReader(cfg *config) {
     scanner := bufio.NewScanner(os.Stdin)
 
     for {

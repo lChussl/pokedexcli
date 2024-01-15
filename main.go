@@ -6,6 +6,10 @@ import (
 )
 
 func main() {
-    client := NewClient(10 * time.Second)
-    terminalReader()
+    pokeClient := pokeapi.NewClient(10 * time.Second)
+    cfg := &config{
+        client: pokeClient,
+    }
+
+    terminalReader(cfg)
 }
